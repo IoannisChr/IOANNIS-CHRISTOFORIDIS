@@ -3,110 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Title Here</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-        }
-
-        .grid {
-            width: 100vw;
-            height: 100vh;
-            display: grid;
-            grid-template-columns: 1fr 3fr;
-            grid-template-rows: min-content min-content auto min-content;
-            grid-template-areas: 
-                'header header' 
-                'nav nav' 
-                'aside main' 
-                'footer footer';
-        }
-
-        header, nav, aside, main, footer {
-            border: 1px solid black;
-            background-color: lightgrey;
-        }
-
-        header { grid-area: header; }
-        nav { 
-            grid-area: nav; 
-            overflow: hidden;
-        }
-        aside { 
-            grid-area: aside; 
-            display: flex;
-            flex-direction: column;
-        }
-        main { 
-            grid-area: main; 
-            display: flex;
-            flex-wrap: wrap;
-        }
-        footer { grid-area: footer; }
-
-        /* Adding styles for the menu buttons */
-        nav button, aside button {
-            float: left;
-            margin: 5px;
-            padding: 10px 20px;
-            background-color: #ddd;
-            border: none;
-            cursor: pointer;
-        }
-
-        /* Clearing float */
-        nav::after, aside::after {
-            content: "";
-            display: table;
-            clear: both;
-        }
-
-        /* Hide class */
-        .hidden {
-            display: none;
-        }
-
-        /* Photo slot styles */
-        .photo-slot {
-            flex: 0 1 calc(33.33% - 10px);
-            margin: 5px;
-            border: 1px solid #999;
-            padding: 10px;
-            /* Set a fixed size for the photo container */
-            width: 300px; /* Adjust this value as needed */
-            height: 400px; /* Adjust this value as needed */
-            /* Ensure the container behaves properly with images */
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* Apply styles to images within photo slots */
-        .photo-slot img {
-            /* Ensure the image fills its container */
-            width: 100%;
-            height: 100%;
-            /* Maintain aspect ratio */
-            object-fit: cover; /* This property ensures the entire image is visible */
-            /* Optional: Center the image within the container */
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            margin: auto;
-        }
-    </style>
+    <title>Queen - Official Website</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
     <div class="grid">
-        <header>Header</header>
+        <header>About Queen</header>
         <nav id="menu">
-            <button onclick="showContent('bio')">Βιογραφία</button>
-            <button onclick="showContent('photos')">Φωτογραφίες</button>
-            <button onclick="showContent('discography')">Δισκογραφία</button>
-            <button onclick="showContent('links')">Σύνδεσμοι</button>
-            <button onclick="showContent('management')">Διαχείριση</button>
+            <button onclick="showContent('bio')">Biography</button>
+            <button onclick="showContent('photos')">Photos</button>
+            <button onclick="showContent('discography')">Discography</button>
+            <button onclick="showContent('links')">Links</button>
+            <button onclick="showContent('management')">Moderation</button>
         </nav>
         <aside id="sideMenu">
             <div id="bioSubMenu" class="hidden">
@@ -128,56 +36,11 @@
             </div>
         </aside>
         <main id="mainContent">Main</main>
-        <footer>Footer</footer>
+        <footer>&copy; 2024 Queen. All Rights Reserved.</footer>
     </div>
-    <script src="main.js"></script>
-    <script>
-        function showContent(contentId) {
-            // Hide all submenus
-            document.querySelectorAll('#sideMenu > div').forEach(subMenu => {
-                subMenu.classList.add('hidden');
-            });
-    
-            // Show the selected submenu
-            document.getElementById(contentId + "SubMenu").classList.remove('hidden');
-    
-            // Update main content
-            const mainContent = document.getElementById('mainContent');
-            switch (contentId) {
-                case 'bio':
-                    mainContent.textContent = 'Bio Content';
-                    break;
-                case 'photos':
-                    mainContent.textContent = 'Photos Content';
-                    break;
-                case 'discography':
-                    mainContent.textContent = 'Discography Content';
-                    break;
-                case 'links':
-                    mainContent.textContent = 'Links Content';
-                    break;
-                case 'management':
-                    mainContent.textContent = 'Management Content';
-                    break;
-                default:
-                    mainContent.textContent = 'Main';
-            }
-        }
-    
-        function showSubContent(subContentId, numberOfPhotos) {
-            const mainContent = document.getElementById('mainContent');
-            mainContent.innerHTML = '';
-            if (numberOfPhotos > 0) {
-                const slotCount = numberOfPhotos <= 3 ? numberOfPhotos : numberOfPhotos === 4 ? 5 : 5;
-                for (let i = 0; i < slotCount; i++) {
-                    // Generating image tags with file paths
-                    mainContent.innerHTML += `<div class="photo-slot"><img src="${subContentId}_${i + 1}.jpg" alt="${subContentId} Photo ${i + 1}"></div>`;
-                }
-            } else {
-                mainContent.textContent = 'No content available for ' + subContentId;
-            }
-            
-        }
-    </script>
+
+    <script src="script.js"></script>
 </body>
 </html>
+
+
